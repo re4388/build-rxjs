@@ -1,26 +1,32 @@
-
-
-function map (transformFn) {
+function map(transformFn) {
+  // 2. and we know we will have an observable input, and `this` is refer to below
+  // return {
+  //   subscribe: subscribe,
+  // }
   const inputObservable = this;
-  const outputObservable = createObservable(function subscribe (outputObserver) {
+
+  // so, how do we create our new Observable? well.. we have createObservable function!
+  // we will need to have "giveMeData" fns and inside, we need to use inputObservable.getMeData
+  // and it will have three cb and we will implement our transformFn logic in next function
+  const outputObservable = createObservable(function subscribe(outputObserver) {
     inputObservable.subscribe({
-      next: function(x){
+      next: function (x) {
         const y = transformFn(x);
-        outputObserver.next(y)
+        outputObserver.next(y);
       },
-      error: e => outputObserver.error(e),
+      error: (e) => outputObserver.error(e),
       complete: () => outputObserver.complete(),
-    })
-  })
+    });
+  });
+
+  // 1. we know we will output an observable, after .map, we will need to subscribe
   return outputObservable;
 }
-
-
 
 function createObservable(subscribe) {
   return {
     subscribe: subscribe,
-    map:map,
+    map: map,
   };
 }
 
@@ -49,6 +55,4 @@ const observer = {
 };
 
 /* let's implement map */
-arrayObservable
-  .map( x => x/10)
-  .subscribe(observer);
+arrayObservable.map((x) => x / 10).subscribe(observer);
