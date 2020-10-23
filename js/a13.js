@@ -1,5 +1,6 @@
 function map(transformFn) {
-  // 2. and we know we will have an observable input, and `this` is refer to below
+  // 2. we know we will have an innerObservable to transform, and `this` comes from
+  // below and we need to get it as inputObservable
   // return {
   //   subscribe: subscribe,
   // }
@@ -30,7 +31,6 @@ function createObservable(subscribe) {
   };
 }
 
-/* then we can refactor ... */
 const clickObservable = createObservable(function subscribe(ob) {
   document.addEventListener("click", ob.next);
 });
@@ -55,4 +55,7 @@ const observer = {
 };
 
 /* let's implement map */
-arrayObservable.map((x) => x / 10).subscribe(observer);
+arrayObservable.map(
+  (x) => x / 10
+  )
+  .subscribe(observer);

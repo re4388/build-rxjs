@@ -1,3 +1,5 @@
+// read file system callback
+
 const readable = getReadableStream();
 
 function nextDataCb(chunk) {
@@ -9,9 +11,9 @@ function errorCb(err) {
 }
 
 function doneCb() {
-  console.log("There will be no more data");
+  console.log('There will be no more data');
 }
 
-readable.on("data", nextDataCb);
-readable.on("error", errorCb);
-readable.on("end", doneCb);
+readable.on('data', nextDataCb);
+readable.on('error', errorCb);
+readable.on('end', doneCb);

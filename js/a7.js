@@ -10,6 +10,8 @@ function completeCallback() {
   console.log("done");
 }
 
+
+/** arry callback */
 function giveMeSomeData(nextCB, errorCB, completeCB) {
   [10, 20, 30].forEach(nextCB);
 }

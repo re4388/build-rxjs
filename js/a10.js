@@ -1,7 +1,8 @@
-/*
+/**
 We refactor subscribe fn into Observable object method
 observer watch callbacks
-what observer is watching at? => Observable  (in this case, you can think that's 10, 20, 30, get me data..)
+what observer is watching at? Observable
+(in this case, you can think that's 10, 20, 30, get me data..)
 */
 
 const Observable = {
